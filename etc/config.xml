@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Polyvision_Tempest>
+            <version>0.1.0</version>
+        </Polyvision_Tempest>
+    </modules>
+        
+        
+    <global>
+        <helpers>
+            <Tempest>
+                <class>Polyvision_Tempest_Helper</class>
+            </Tempest>  
+        </helpers>
+         <blocks>
+            <tempest>
+                <class>Polyvision_Tempest_Block</class>
+            </tempest>
+           </blocks>
+    </global>        
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <tempest before="Mage_Adminhtml">Polyvision_Tempest_Adminhtml</tempest>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+    
+    <adminhtml>
+        <menu>
+            <menu1 translate="title" module="Tempest">
+                <title>polyvision Tempest</title>
+                <sort_order>60</sort_order>
+                <children>
+                    <menuitem1 module="Tempest">
+                        <title>Übersicht</title>
+                        <action>adminhtml/tempest_main</action>
+                    </menuitem1>
+					<menuitem2 module="Tempest">
+                        <title>manueller Export</title>
+                        <action>adminhtml/tempest_export</action>
+                    </menuitem2>
+                </children>                
+            </menu1>
+        </menu>
+<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <tempest_options>
+                                            <title>Store Hello World Module Section</title>
+                                        </tempest_options>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>    
+    
+	<jobs>
+        <export>
+			<!-- siehe Standard-Konfiguration unter default/lieferant/order_email/cron_time und cron_frequency (weiter unten) -->
+			<schedule><cron_expr>18 0 * * *</cron_expr></schedule>
+            <run>
+                <model>tempest/observer::scheduledExport</model>
+            </run>
+        </export>
+    </jobs>
+
+    <default>
+        <tempest_options>
+            <general_options>
+				<export_email>abierbrauer@polyvision.org</export_email>
+		                <export_directory>/tmp/</export_directory>
+				<cron_time>18,0,0</cron_time>
+				<cron_frequency>D</cron_frequency>
+            </general_options>
+        </tempest_options>
+    </default>
+</config>

@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<config>
+	<tabs>
+		<tempest_config module="Tempest" translate="label">
+			<label>polyvision</label>
+			<sort_order>100</sort_order>
+		</tempest_config>
+	</tabs>
+	<sections>
+		<tempest_options translate="label" module="Tempest">
+			<label>Tempest-Export</label>
+			<tab>tempest_config</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>1000</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>                    
+			<groups>
+				<general_options translate="label">
+					<label>General</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<!-- New fields go here -->
+						<export_email translate="label comment">
+							<label>Export-eMail-Benachrichtigung</label>
+							<comment>
+								<![CDATA[Leave blank for not sending any email at all]]>
+							</comment>
+							<frontend_type>text</frontend_type>
+
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</export_email>
+						<export_directory translate="label comment">
+							<label>Export-Directory</label>
+							<comment>
+								<![CDATA[Directory on the server to save all exported data</span>]]>
+							</comment>
+							<frontend_type>text</frontend_type>
+
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</export_directory>
+						<cron_frequency translate="label">
+							<label>Export-Frequenz</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_cron_frequency</source_model>
+							
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</cron_frequency>
+						<cron_time translate="label,comment">
+							<label>Export-Uhrzeit</label>
+                                                        <source_model>adminhtml/system_config_source_cron_frequency</source_model>
+                                                        <backend_model>polyvision_tempest_model_system_config_backend_cron</backend_model>
+							<frontend_type>time</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Ignoriere das dritte Dropdown ;)</comment>
+						</cron_time>
+					</fields>
+				</general_options>
+			</groups>
+		</tempest_options>
+	</sections>   
+</config>
